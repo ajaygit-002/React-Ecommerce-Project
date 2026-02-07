@@ -2,10 +2,13 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const path = require('path');
-dotenv.config({ path: path.join(__dirname, 'config', 'config.env') })
+const connectdatabase = require('./config/connectdatabase');
+dotenv.config({ path: path.join(__dirname, 'config', 'config.env') });
 
 const products = require('./routes/product');
 const orders = require('./routes/order');
+
+connectdatabase();
 
 app.use('/api/v1', products);
 app.use('/api/v1', orders);
